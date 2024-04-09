@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Margg</title>
+    <meta http-equiv="X-UA-Compatible" content="ie-edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/booking.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
+    <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
+</head>
+
+<body>
+    <header>
+        <span class="topbar">
+            <span class="left">
+                <nav><a href="/home"><img style="width: 5em;margin-bottom: -7px;"
+                            src="{{ url_for('static', filename='img/white.png') }}"></a></nav>
+                <nav>About</nav>
+            </span>
+            <span class="right"><svg xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" viewBox="0 0 24 24"
+                    fill="none">
+                    <path opacity="0.4"
+                        d="M12.1207 12.78C12.0507 12.77 11.9607 12.77 11.8807 12.78C10.1207 12.72 8.7207 11.28 8.7207 9.50998C8.7207 7.69998 10.1807 6.22998 12.0007 6.22998C13.8107 6.22998 15.2807 7.69998 15.2807 9.50998C15.2707 11.28 13.8807 12.72 12.1207 12.78Z"
+                        stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <path opacity="0.34"
+                        d="M18.7398 19.3801C16.9598 21.0101 14.5998 22.0001 11.9998 22.0001C9.39977 22.0001 7.03977 21.0101 5.25977 19.3801C5.35977 18.4401 5.95977 17.5201 7.02977 16.8001C9.76977 14.9801 14.2498 14.9801 16.9698 16.8001C18.0398 17.5201 18.6398 18.4401 18.7398 19.3801Z"
+                        stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <path
+                        d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                        stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg></span>
+        </span>
+    </header>
+
+    <div class="base">
+        <div class="pane">
+            <div class="container">
+                <div class="left-div">
+                    <div id="map"></div>
+                    <p style="text-align: center;margin-bottom: 1%; color: aliceblue;">SLV → DHM</p>
+                </div>
+                <div class="right-div">
+                    <h1>
+                        <div class="route">
+                            <div class="grid-container">
+                                <div class="To">Shimla</div>
+                                <div class="arrow">→</div>
+                                <div class="From">Dharamshala</div>
+                            </div>
+                        </div>
+                    </h1>
+                    <div class="bus-tracking-container">
+                        <div class="left-section">
+                          <div style="margin: 10px;">Est. time: 3:30hrs</div>
+                          <div style="margin: 10px;">Departure: 15:00</div>
+                          <div style="margin: 10px;">Arrival: 18:30</div>
+                          <div style="margin: 10px;">Emmissions: XX g/km</div>
+                        </div>
+                        <div class="right-section">
+                          <div class="location-box" style="text-align: center;">
+                            <div style="font-size: small;">Share your location</div>
+                            <svg fill="#000000" height="20px" width="20px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 458.624 458.624" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M339.588,314.529c-14.215,0-27.456,4.133-38.621,11.239l-112.682-78.67c1.809-6.315,2.798-12.976,2.798-19.871 c0-6.896-0.989-13.557-2.798-19.871l109.64-76.547c11.764,8.356,26.133,13.286,41.662,13.286c39.79,0,72.047-32.257,72.047-72.047 C411.634,32.258,379.378,0,339.588,0c-39.79,0-72.047,32.257-72.047,72.047c0,5.255,0.578,10.373,1.646,15.308l-112.424,78.491 c-10.974-6.759-23.892-10.666-37.727-10.666c-39.79,0-72.047,32.257-72.047,72.047s32.256,72.047,72.047,72.047 c13.834,0,26.753-3.907,37.727-10.666l113.292,79.097c-1.629,6.017-2.514,12.34-2.514,18.872c0,39.79,32.257,72.047,72.047,72.047 c39.79,0,72.047-32.257,72.047-72.047C411.635,346.787,379.378,314.529,339.588,314.529z"></path> </g> </g> </g></svg>
+                            <!-- User location content -->
+                          </div>
+                          <div class="alert-box" style="text-align: center;">
+                            <br>    
+                            Give an alert
+                            <!-- Dimmed placeholder alert button -->
+                          </div>
+                        </div>
+                      </div>                      
+                </div>
+            </div>
+            <p id="scroll-to-top" style="text-align: center;margin-top:1%;"><a href="#"
+                    style="text-align: center;">Scroll to Top</a></p>
+        </div>
+    </div>
+
+    <footer style="background-color: black; color: white; padding: 20px;">
+        <img style="width: 10em;" src="{{ url_for('static', filename='img/white.png') }}">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+                <h3>About Us</h3>
+                <p>Margg is a new and innovative way of tracking, booking tickets and setting up travel plans for all of
+                    our users.</p>
+            </div>
+            <div>
+                <h3>Contact</h3>
+                <ul>
+                    <li><a href="#">Customer Support</a></li>
+                    <li>Email: example@example.com</li>
+                    <li>Phone: +1-123-456-7890</li>
+                    <li>Address: 123 Main Street, Trivandrum, INdia</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Follow Us</h3>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Instagram</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 20px;">
+            &copy; 2023 Margg. All rights reserved.
+        </div>
+    </footer>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="{{ url_for('static', filename='js/booking.js') }}"></script>
+    <script src="{{ url_for('static', filename='location.js') }}"></script>
+</body>
+
+</html>

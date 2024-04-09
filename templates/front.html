@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Margg</title>
+    <meta http-equiv="X-UA-Compatible" content="ie-edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/front.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+
+<body>
+    <header>
+        <span class="topbar">
+            <span class="left">
+                <nav><a href="#"><img style="width: 5em;margin-bottom: -7px;"
+                            src="{{ url_for('static', filename='img/white.png') }}"></a></nav>
+                <nav><a href="#about-section">About</a></nav>
+            </span>
+            <span class="right"><svg xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" viewBox="0 0 24 24"
+                    fill="none">
+                    <path opacity="0.4"
+                        d="M12.1207 12.78C12.0507 12.77 11.9607 12.77 11.8807 12.78C10.1207 12.72 8.7207 11.28 8.7207 9.50998C8.7207 7.69998 10.1807 6.22998 12.0007 6.22998C13.8107 6.22998 15.2807 7.69998 15.2807 9.50998C15.2707 11.28 13.8807 12.72 12.1207 12.78Z"
+                        stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <path opacity="0.34"
+                        d="M18.7398 19.3801C16.9598 21.0101 14.5998 22.0001 11.9998 22.0001C9.39977 22.0001 7.03977 21.0101 5.25977 19.3801C5.35977 18.4401 5.95977 17.5201 7.02977 16.8001C9.76977 14.9801 14.2498 14.9801 16.9698 16.8001C18.0398 17.5201 18.6398 18.4401 18.7398 19.3801Z"
+                        stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <path
+                        d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                        stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg></span>
+        </span>
+    </header>
+    <div class="base">
+        <div class="center-content">
+            <img src="{{ url_for('static', filename='img/black.png') }}"><br>
+            <a href="/"><button>Explore</button></a>
+        </div>
+    </div>
+    <div class="about-section" id="about-section">
+        <h2>About Us</h2>
+        <p>
+            Bus tracking<br>
+
+Bus tracking mainly means that if you are waiting for your bus, and you wanted to check how long or how many more distance the bus has till it reaches your stop, you can use check in with the website and track the location of your bus in real time and see your necessary needs to an end.<br>
+
+Disaster Emergency Help<br>
+
+If by any chance the bus and it's passengers undergo a devastating turn of event during it's journey, then the sensor systems on the bus will automatically send help signals to authentic authority for rescue of it's passengers. The sensors will get activated upon any kinda of damage over a certain threshold to the bus and alert the authorities on time. To avoid false alerting signals from happening, the buses will undergo inspection on it's sensors and other mechanical equipments from being faulty.
+There are also a passenger self-alerting system provided inside the buses for incase of any medical or physical emergencies experienced by any of them during their ride. These alerts will also be sent to the authorities which will contact the staff in the buses to check what exactly the needs of those passengers are.<br>
+
+Cameras pointed inside and out<br>
+
+There are cctvs and black box systems inside each and every bus to ensure the safety of its passengers.<br><br><br><br><br><br><br><br><br>
+        </p>
+    </div>
+    <p id="scroll-to-top" style="text-align: center;margin-top: -6%;"><a href="#" style="text-align: center;">Scroll to
+            Top</a></p>
+    
+
+    <footer style="background-color: black; color: white; padding: 20px;">
+        <img style="width: 10em;" src="{{ url_for('static', filename='img/white.png') }}">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+                <h3 id="about">About Us</h3>
+                <p>Margg is a new and innovative way of tracking, booking tickets and setting up travel plans for all of
+                    our users.</p>
+            </div>
+            <div>
+                <h3>Contact</h3>
+                <ul>
+                    <li><a href="#">Customer Support</a></li>
+                    <li>Email: example@example.com</li>
+                    <li>Phone: +1-123-456-7890</li>
+                    <li>Address: 123 Main Street, Trivandrum, INdia</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Follow Us</h3>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Instagram</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 20px;">
+            &copy; 2023 Margg. All rights reserved.
+        </div>
+    </footer>
+</body>
+
+</html>
